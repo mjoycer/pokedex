@@ -23,8 +23,8 @@ let returnToHomeBtn = document.querySelector('#return');
 let initialCoins = 30;
 
 // create two arrays, one for card name, and another for card suit
-var cardName = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-var cardSuit = ['Diamonds', 'Hearts', 'Spades', 'Clubs'];
+let cardName = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+let cardSuit = ['Diamonds', 'Hearts', 'Spades', 'Clubs'];
 
 // create initial value for bet(minimum of 1 coin)
 betDisplay.value = 1;
@@ -32,7 +32,7 @@ coinsRemaining.textContent = initialCoins; //updates front-end of how much inita
 
 // function to create a deck of cards from the array
 function deckOfCards() {
-  var cards = [];
+  let cards = [];
 
   for (let s = 0; s < cardSuit.length; s++) {
     for (let n = 0; n < cardName.length; n++) {
@@ -46,8 +46,8 @@ function deckOfCards() {
 
 function getRandomCard() { // function to show a random card in the front-end
 
-  var randomCardName;
-  var randomCardSuit;
+  let randomCardName;
+  let randomCardSuit;
 
   let randomNumber = Math.floor(Math.random() * 51);
 
