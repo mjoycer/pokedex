@@ -34,7 +34,6 @@ coinsRemaining.textContent = initialCoins; //updates front-end of how much inita
 // function to create a deck of cards from the array
 function deckOfCards() {
   let cards = [];
-
   for (let s = 0; s < cardSuit.length; s++) {
     for (let n = 0; n < cardName.length; n++) {
       let name = cardName[n];
@@ -46,22 +45,17 @@ function deckOfCards() {
 }
 
 function getRandomCard() { // function to show a random card in the front-end
-
   let randomCardName;
   let randomCardSuit;
-
   let randomNumber = Math.floor(Math.random() * 51);
-
   randomCardName = cards[randomNumber].name;
   randomCardSuit = cards[randomNumber].suit;
-
   let icon;
   if (randomCardSuit == "Diamonds") {
     icon = '&diams;';
   } else {
     icon = `&${randomCardSuit.toLowerCase()};`;
   }
-
   const singleCard = document.createElement("div");
   singleCard.classList.add("card", randomCardSuit.toLowerCase());
   singleCard.innerHTML =
@@ -69,26 +63,20 @@ function getRandomCard() { // function to show a random card in the front-end
     <span class="card-suit">${icon}</span>
     <span class="card-name-suit bot">${randomCardName} ${icon}</span>`;
   deckContainer.appendChild(singleCard);
-
   let randomValue; // randomValue to be able to compare it later
-
   switch (randomCardName) {
     case 'A':
       randomValue = 1;
       break;
-
     case 'J':
       randomValue = 11;
       break;
-
     case 'Q':
       randomValue = 12;
       break;
-
     case 'K':
       randomValue = 13;
       break;
-
     default:
       randomValue = Number(randomCardName);
   }
@@ -96,8 +84,8 @@ function getRandomCard() { // function to show a random card in the front-end
   return randomValue;
 }
 
-function removeCard(x) { // function to remove card from the current deck
-  for (j = x; j <= cards.length - 2; j++) {
+function removeCard(generatedCard) { // function to remove card from the current deck
+  for (j = generatedCard; j <= cards.length - 2; j++) {
     cards[j] = cards[j + 1];
   }
   cards.length--;
@@ -144,18 +132,17 @@ function clearDeck() { // function that clears the game board
 }
 
 function disableButtons() { // function to disable the buttons (happens when the game is over)
-
-    addBet.disabled = true;
-    minusBet.disabled = true;
-    minimumBet.disabled = true;
-    maximumBet.disabled = true;
-    submitBet.disabled = true;
+  addBet.disabled = true;
+  minusBet.disabled = true;
+  minimumBet.disabled = true;
+  maximumBet.disabled = true;
+  submitBet.disabled = true;
 
 }
 
-betDisplay.addEventListener("keypress", function(e){
-  if (e.key === 'Enter'){
-    if (parseInt(betDisplay.value) > parseInt(coinsRemaining.textContent) || (parseInt(betDisplay.value) <=0)) {
+betDisplay.addEventListener("keypress", function (e) {
+  if (e.key === 'Enter') {
+    if (parseInt(betDisplay.value) > parseInt(coinsRemaining.textContent) || (parseInt(betDisplay.value) <= 0)) {
       alert('Invalid bet.');
       submitBet.disabled = true;
     } else {
@@ -170,7 +157,7 @@ addBet.addEventListener("click", function () {
   betDisplay.value++;
   disableMinBtn();
   disableAddBtn();
-  if (parseInt(betDisplay.value) >=1 && parseInt(betDisplay.value) <= parseInt(coinsRemaining.textContent) ){
+  if (parseInt(betDisplay.value) >= 1 && parseInt(betDisplay.value) <= parseInt(coinsRemaining.textContent)) {
     submitBet.disabled = false;
   }
 });
@@ -179,7 +166,7 @@ minusBet.addEventListener("click", function () {
   betDisplay.value--;
   disableMinBtn();
   disableAddBtn();
-  if (parseInt(betDisplay.value) >=1 && parseInt(betDisplay.value) <= parseInt(coinsRemaining.textContent) ){
+  if (parseInt(betDisplay.value) >= 1 && parseInt(betDisplay.value) <= parseInt(coinsRemaining.textContent)) {
     submitBet.disabled = false;
   }
 });
@@ -188,7 +175,7 @@ minimumBet.addEventListener("click", function () {
   betDisplay.value = 1;
   disableMinBtn();
   disableAddBtn();
-  if (parseInt(betDisplay.value) >=1 && parseInt(betDisplay.value) <= parseInt(coinsRemaining.textContent) ){
+  if (parseInt(betDisplay.value) >= 1 && parseInt(betDisplay.value) <= parseInt(coinsRemaining.textContent)) {
     submitBet.disabled = false;
   }
 });
@@ -197,7 +184,7 @@ maximumBet.addEventListener("click", function () {
   betDisplay.value = coinsRemaining.textContent;
   disableAddBtn();
   disableMinBtn();
-  if (parseInt(betDisplay.value) >=1 && parseInt(betDisplay.value) <= parseInt(coinsRemaining.textContent) ){
+  if (parseInt(betDisplay.value) >= 1 && parseInt(betDisplay.value) <= parseInt(coinsRemaining.textContent)) {
     submitBet.disabled = false;
   }
 });
@@ -207,20 +194,18 @@ restartBtn.addEventListener("click", function () {
 })
 
 
-dealNew.addEventListener("click", function() {
-
+dealNew.addEventListener("click", function () {
   clearDeck();
   dealNew.classList.add('hidden');
-  resultContainer.textContent="";
-
+  resultContainer.textContent = "";
   if (parseInt(coinsRemaining.textContent) == 0) {
     disableButtons();
     resultContainer.textContent = 'You have no remaining coins. Game Over!'
     restartBtn.classList.remove('hidden');
   } else {
-  getNewCards();
-  submitBet.disabled = false;
-  mainResultContainer.classList.add('hidden');
+    getNewCards();
+    submitBet.disabled = false;
+    mainResultContainer.classList.add('hidden');
   }
   disableMinBtn();
   disableAddBtn();
@@ -230,7 +215,8 @@ dealNew.addEventListener("click", function() {
 
 function disableMinBtn() {  //function to disable the "-" button. happens when the bet is already in minimum (1 coin)
   if ((parseInt(betDisplay.value) > 1) && (parseInt(betDisplay.value) < parseInt(coinsRemaining.textContent))) {
-    minusBet.disabled = false;}
+    minusBet.disabled = false;
+  }
   else if (parseInt(betDisplay.value) >= parseInt(coinsRemaining.textContent)) {
     minusBet.disabled = false;
   } else {
@@ -250,7 +236,7 @@ function youWon() { // function to show that you won. adds the coins won to the 
   coinsRemaining.textContent = parseInt(coinsRemaining.textContent) + (2 * betDisplay.value);
   console.log(`You won ${2 * betDisplay.value} coins!`);
   resultContainer.textContent = `You won ${2 * betDisplay.value} coins!`
-  setTimeout (function(){
+  setTimeout(function () {
     mainResultContainer.classList.remove('hidden');
     coinAnimation.classList.remove('hidden');
   }, 1000);
@@ -260,7 +246,7 @@ function youWon() { // function to show that you won. adds the coins won to the 
 
 function youLose() { //function to show that you lost.
   console.log(`You Lose. Try Again.`)
-  setTimeout (function(){
+  setTimeout(function () {
     mainResultContainer.classList.remove('hidden');
   }, 1500);
   resultContainer.textContent = `You lose. Try again!`
@@ -287,14 +273,13 @@ betLower.addEventListener("click", function () {
   }
 });
 
-instructionsBtn.addEventListener("click", function(){
+instructionsBtn.addEventListener("click", function () {
   let instructionsText = document.createTextNode('.');
   startContainer.appendChild(instructionsText);
   instructionsContainer.classList.remove('hidden');
 });
 
-
-startBtn.addEventListener("click", function(){
+startBtn.addEventListener("click", function () {
   clearDeck();
   getNewCards();
   optionsContainer.classList.remove('hidden');
@@ -303,13 +288,13 @@ startBtn.addEventListener("click", function(){
   startContainer.classList.add('hidden');
   instructionsContainer.classList.add('hidden');
   mainResultContainer.classList.add('hidden');
-  addBet.disabled = false ;
-  minimumBet.disabled = false ;
-  maximumBet.disabled = false ;
-  submitBet.disabled = false ;
+  addBet.disabled = false;
+  minimumBet.disabled = false;
+  maximumBet.disabled = false;
+  submitBet.disabled = false;
 });
 
-returnToHomeBtn.addEventListener("click", function(){
+returnToHomeBtn.addEventListener("click", function () {
   window.location.reload();
 });
 
