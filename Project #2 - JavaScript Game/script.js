@@ -109,19 +109,24 @@ function toggleHighLowBtn() { // function to show/hide the HIGHER/LOWER (happens
 }
 
 submitBet.addEventListener("click", function () {
-  coinsRemaining.textContent -= betDisplay.value;
-  let thirdCard = getRandomCard();
-
-  if ((firstCard == thirdCard) || (secondCard == thirdCard)) {
-    youLose();
-  } else if ((thirdCard > firstCard) && (thirdCard > secondCard)) {
-    youLose();
-  } else if ((thirdCard < firstCard) && (thirdCard < secondCard)) {
-    youLose();
+  if ((parseInt(betDisplay.value) > parseInt(coinsRemaining.textContent)) || ((parseInt(betDisplay.value) <= 0))) {
+    alert('Invalid bet.');
+    submitBet.disabled = true;
   } else {
-    youWon();
+    optionsContainer.classList.add('hidden');
+    submitBet.disabled = false;
+    coinsRemaining.textContent -= betDisplay.value;
+    let thirdCard = getRandomCard();
+    if ((firstCard == thirdCard) || (secondCard == thirdCard)) {
+      youLose();
+    } else if ((thirdCard > firstCard) && (thirdCard > secondCard)) {
+      youLose();
+    } else if ((thirdCard < firstCard) && (thirdCard < secondCard)) {
+      youLose();
+    } else {
+      youWon();
+    }
   }
-  optionsContainer.classList.add('hidden');
 });
 
 function clearDeck() { // function that clears the game board
@@ -199,18 +204,18 @@ dealNew.addEventListener("click", function () {
   dealNew.classList.add('hidden');
   resultContainer.textContent = "";
   if (parseInt(coinsRemaining.textContent) == 0) {
-    disableButtons();
+    optionsContainer.classList.add('hidden');
     resultContainer.textContent = 'You have no remaining coins. Game Over!'
     restartBtn.classList.remove('hidden');
   } else {
     getNewCards();
     submitBet.disabled = false;
     mainResultContainer.classList.add('hidden');
+    optionsContainer.classList.remove('hidden');
   }
   disableMinBtn();
   disableAddBtn();
   coinAnimation.classList.add('hidden');
-  optionsContainer.classList.remove('hidden');
 });
 
 function disableMinBtn() {  //function to disable the "-" button. happens when the bet is already in minimum (1 coin)
