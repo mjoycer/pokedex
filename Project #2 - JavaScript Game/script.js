@@ -18,6 +18,7 @@ let instructionsBtn = document.querySelector('#how-to-play');
 let startContainer = document.querySelector('#startContainer');
 let instructionsContainer = document.querySelector('#instructions');
 let returnToHomeBtn = document.querySelector('#return');
+let optionsContainer = document.querySelector('#optionsContainer');
 
 // initial coins at the start of the game
 let initialCoins = 30;
@@ -132,6 +133,7 @@ submitBet.addEventListener("click", function () {
   } else {
     youWon();
   }
+  optionsContainer.classList.add('hidden');
 });
 
 function clearDeck() { // function that clears the game board
@@ -223,7 +225,7 @@ dealNew.addEventListener("click", function() {
   disableMinBtn();
   disableAddBtn();
   coinAnimation.classList.add('hidden');
-
+  optionsContainer.classList.remove('hidden');
 });
 
 function disableMinBtn() {  //function to disable the "-" button. happens when the bet is already in minimum (1 coin)
@@ -295,7 +297,7 @@ instructionsBtn.addEventListener("click", function(){
 startBtn.addEventListener("click", function(){
   clearDeck();
   getNewCards();
-
+  optionsContainer.classList.remove('hidden');
   coinsRemaining.textContent = initialCoins;
   betDisplay.value = '1';
   startContainer.classList.add('hidden');
