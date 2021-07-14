@@ -65,9 +65,9 @@ function getRandomCard() { // function to show a random card in the front-end
   const singleCard = document.createElement("div");
   singleCard.classList.add("card", randomCardSuit.toLowerCase());
   singleCard.innerHTML =
-    '<span class="card-name-suit top">' + randomCardName + icon + '</span>' +
-    '<span class="card-suit">' + icon + '</span>' +
-    '<span class="card-name-suit bot">' + randomCardName + icon + '</span>';
+    `<span class="card-name-suit top">${randomCardName} ${icon}</span>
+    <span class="card-suit">${icon}</span>
+    <span class="card-name-suit bot">${randomCardName} ${icon}</span>`;
   deckContainer.appendChild(singleCard);
 
   let randomValue; // randomValue to be able to compare it later
