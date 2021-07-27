@@ -45,11 +45,9 @@ function deckOfCards() {
 }
 
 function getRandomCard() { // function to show a random card in the front-end
-  let randomCardName;
-  let randomCardSuit;
   let randomNumber = Math.floor(Math.random() * 51);
-  randomCardName = cards[randomNumber].name;
-  randomCardSuit = cards[randomNumber].suit;
+  let randomCardName = cards[randomNumber].name;
+  let randomCardSuit = cards[randomNumber].suit;
   let icon;
   if (randomCardSuit == "Diamonds") {
     icon = '&diams;';
@@ -171,7 +169,7 @@ minusBet.addEventListener("click", function () {
   betDisplay.value--;
   disableMinBtn();
   disableAddBtn();
-  if (parseInt(betDisplay.value) >= 1 && parseInt(betDisplay.value) <= parseInt(coinsRemaining.textContent)) {
+  if (parseInt(betDisplay.value) > 1 && parseInt(betDisplay.value) <= parseInt(coinsRemaining.textContent)) {
     submitBet.disabled = false;
   }
 });
@@ -253,7 +251,7 @@ function youLose() { //function to show that you lost.
   console.log(`You Lose. Try Again.`)
   setTimeout(function () {
     mainResultContainer.classList.remove('hidden');
-  }, 1500);
+  }, 1000);
   resultContainer.textContent = `You lose. Try again!`
   dealNew.classList.remove('hidden');
   restartBtn.classList.add('hidden');
@@ -261,6 +259,7 @@ function youLose() { //function to show that you lost.
 
 betHigher.addEventListener("click", function () { // upon clicking (placing a bet on higher card), computer will show a third card and analyze.
   coinsRemaining.textContent -= betDisplay.value;
+  optionsContainer.classList.add('hidden');
   let thirdCard = getRandomCard();
   if (thirdCard > firstCard) {
     youWon();
@@ -270,7 +269,9 @@ betHigher.addEventListener("click", function () { // upon clicking (placing a be
 });
 
 betLower.addEventListener("click", function () {
+  coinsRemaining.textContent -= betDisplay.value;
   let thirdCard = getRandomCard();
+  optionsContainer.classList.add('hidden');
   if (thirdCard < firstCard) {
     youWon();
   } else {
@@ -297,6 +298,7 @@ startBtn.addEventListener("click", function () {
   minimumBet.disabled = false;
   maximumBet.disabled = false;
   submitBet.disabled = false;
+  minusBet.disabled = true;
 });
 
 returnToHomeBtn.addEventListener("click", function () {
