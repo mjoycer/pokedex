@@ -92,8 +92,11 @@ function removeCard(generatedCard) { // function to remove card from the current
 function getNewCards() { // function to get a new set of cards after one game
   firstCard = getRandomCard();
   secondCard = getRandomCard();
+  submitBet.disabled = false;
   toggleHighLowBtn();
 }
+
+
 
 function toggleHighLowBtn() { // function to show/hide the HIGHER/LOWER (happens when first card has the same value with second card)
   if (firstCard == secondCard) {
@@ -207,7 +210,6 @@ dealNew.addEventListener("click", function () {
     restartBtn.classList.remove('hidden');
   } else {
     getNewCards();
-    submitBet.disabled = false;
     mainResultContainer.classList.add('hidden');
     optionsContainer.classList.remove('hidden');
   }
