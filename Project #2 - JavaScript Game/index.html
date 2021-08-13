@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In-Between</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <main id="mainContainer">
+    <div id="coinContainer">
+      <img src="https://image.flaticon.com/icons/png/512/1292/1292744.png" alt="Coin Icon">
+      <span id="coinsRemaining"> </span>
+    </div>
+    <div id="deckContainer">
+    </div>
+    <div id="startContainer">
+      <h1><span class="diamonds">&diams;</span>
+        <span class="black">&clubs;</span>
+        In-Between <span class="black">&spades;</span>
+        <span class="hearts">&hearts;</span>
+      </h1>
+      <button id="how-to-play" class="btn btn-dark">HOW TO PLAY</button>
+      <button id="start" class="btn btn-dark">START GAME</button>
+    </div>
+    <div id="instructions" class="hidden">
+      <p>The computer will reveal two cards. The player will decide to
+        bet any amount. The computer will show a third card.
+        If the third card is in-between the two cards shown, the player wins double of the amount of coins they bet.
+        If not, then they lose the number of coins they bet. The game is over when the player has no more coins.
+        The value of the cards are as follows: <br>
+        A= 1, J=11, Q=12, K=13, and the number cards will have the same value as their number.</p>
+      <button id="return" class="btn btn-dark">BACK</button>
+    </div>
+    <div id="mainResultContainer" class="hidden">
+      <div id="resultContainer">
+        <div id="result"></div>
+        <button id="ok" class="hidden btn btn-dark">OKAY</button>
+        <div id="restartContainer">
+          <button id="restart" class="hidden btn btn-dark">RESTART</button>
+        </div>
+      </div>
+    </div>
+   
+    <div id="optionsContainer" class="hidden">
+      BET:
+      <input type="text" id="betDisplay" />
+      <button id="increase" title="Increase bet" class="btn btn-dark">+</button>
+      <button id="decrease" title="Decrease bet" class="btn btn-dark">-</button>
+      <button id="minimum" title="Minimum Bet" class="btn btn-dark">MIN</button>
+      <button id="all-in" title="Maximum Bet" class="btn btn-dark">ALL-IN</button>
+      <button id="submit-bet" title="Submit your bet" class="btn btn-dark">BET</button>
+      <div id="higher-lower">
+        <button id="higher" class="hidden btn btn-dark" title="The third card will have higher value than these cards">HIGHER</button>
+        <button id="lower" class="hidden btn btn-dark" title="The third card will have lower value than these cards">LOWER</button>
+      </div>
+    </div>
+    <div id="one" class="coin-animation-container hidden">
+      <img src="https://image.flaticon.com/icons/png/512/1292/1292744.png" alt="Coin Icon">
+  </main>
+  <script src="script.js"></script>
+</body>
+
+</html>
